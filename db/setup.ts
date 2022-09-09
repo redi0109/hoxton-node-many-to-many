@@ -42,5 +42,47 @@ INSERT INTO applicants (name, email) VALUES (@name, @email)
 `);
 
 for (let applicant of applicants) {
-  createApplicant.run();
+  createApplicant.run(applicant);
+}
+
+const interviewers = [
+  {
+    name: "Nicolas Marcora",
+    email: "nicolasmarcora@gmail.com",
+  },
+  {
+    name: "Geri Cupi",
+    email: "gericupi@gmail.com",
+  },
+  {
+    name: "Mark Zuckerberg",
+    email: "markzuckerberg@gmail.com",
+  },
+  {
+    name: "Elon Musk",
+    email: "elonmusk@gmail.com",
+  },
+];
+
+const dropInterviewersTable = db.prepare(`
+DROP TABLE IF EXISTS interviewers
+`);
+dropInterviewersTable.run;
+
+const createInterviewersTable = db.prepare(`
+CREATE TABLE IF NOT EXISTS interviewers (
+    id INTEGER NOT NULL,
+    name TEXT NUT NULL,
+    email TEXT NUT NULL,
+    PRIMARY KEY (id)
+)
+`);
+createInterviewersTable.run();
+
+const createInterviewer = db.prepare(`
+INSERT INTO interviewers (name, email) VALUES (@name, @email)
+`);
+
+for (let interviewer of interviewers) {
+  createInterviewer.run(interviewer);
 }

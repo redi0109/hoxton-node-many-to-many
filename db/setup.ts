@@ -1,7 +1,25 @@
 import Database from "better-sqlite3";
 const db = Database("./db/data.db", { verbose: console.log });
 
-const applicants = [
+type Applicants =  {
+    name: string;
+    email: string;
+}
+
+
+type Interviewers =  {
+    name: string;
+    email: string;
+}
+
+type Interviews = {
+    applicantId: number;
+    interviewerId: number;
+    date: string;
+    result: string;
+}
+
+const applicants: Applicants []  = [
   {
     name: "Redi Boraj",
     email: "rediboraj@gmail.com",
@@ -45,7 +63,7 @@ for (let applicant of applicants) {
   createApplicant.run(applicant);
 }
 
-const interviewers = [
+const interviewers: Interviewers[] = [
   {
     name: "Nicolas Marcora",
     email: "nicolasmarcora@gmail.com",
@@ -87,7 +105,7 @@ for (let interviewer of interviewers) {
   createInterviewer.run(interviewer);
 }
 
-const interviews = [
+const interviews: Interviews[] = [
   {
     applicantId: 1,
     interviewerId: 1,
